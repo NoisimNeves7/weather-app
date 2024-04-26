@@ -5,6 +5,7 @@ import CurrentWeather from './components/CurrentWeather'
 import { weatherInstance } from './utils/axios'
 import { WEATHER_KEY } from './utils/constants'
 import Forecast from './components/Forecast'
+import UserWeather from './components/UserWeather'
 
 const App = () => {
 
@@ -13,12 +14,15 @@ const App = () => {
   const [weather, setweather] = useState(null)
   const [forecast, setforecast] = useState(null)
   const [forecastLoading, setforecastLoading] = useState(false);
+  const [city, setCity] = useState(null);
 
   const getSearchData = (data) =>{
     setlongitude(data.longitude)
     setlatitude(data.latitude)
     setweather({city:data.city,regionCode:data.regionCode})
   }
+
+  
 
   const getSearchWeatherData = async()=>{
     try {
@@ -64,8 +68,9 @@ const App = () => {
 
      className='w-screen h-screen bg-slate-200 overflow-y-auto overflow-x-hidden'>
       <Search getSearchData={getSearchData}/>
-      {weather && <CurrentWeather data={weather}/>}
+      {weather && <CurrentWeather data={weather} city={city}/>}
       {!forecastLoading && forecast && <Forecast data={forecast}/>}
+      {!weather  && <UserWeather latitude={latitude} setlatitude={setlatitude} longitude={longitude} setlongitude={setlongitude} city={city} setCity={setCity}/>}
     </div>
   )
 }

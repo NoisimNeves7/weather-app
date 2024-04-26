@@ -10,7 +10,7 @@ const Forecast = ({data}) => {
   return <div className="w-full  lg:px-10 px-2 mt-10 mb-10">
     <h1 className=" font-bold text-3xl lg:text-4xl text-white ">Forecast for next 7 Days</h1>
     {data.list.slice(0,7).map((item,index)=>{
-      return <div key={index} className="lg:p-5 px-2 lg:px-0 bg-[#cbd5e199] w-full rounded-lg mt-5 flex items-center justify-between">
+      return <div key={index} className="lg:p-5 px-2  bg-[#cbd5e199] w-full rounded-lg mt-5 flex items-center justify-between">
       <div  className="flex items-center gap-10 ">
       <img className="w-10 lg:w-full" src={`/icons/${data.list[index].weather[0].icon}.png`} alt="" />
       <h1 className="font-bold text-sm lg:text-lg">{forecastDays[index]}</h1>
